@@ -25,6 +25,7 @@ const catBreeds = ['Persa', 'Siamés', 'Maine Coon', 'Bengalí', 'Ragdoll', 'Sph
 export default function AppointmentFor ({ pets }: { pets: Pet[] }) {
   const { register, setValue, getValues, control, formState: { errors } } = useFormContext()
   const prevPetTypeRef = useRef<string | null>(null)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [preview, setPreview] = useState<string | null>(null)
 
   const petSelection = useWatch({ name: 'petSelection', control })

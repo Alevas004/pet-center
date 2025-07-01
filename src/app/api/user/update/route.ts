@@ -40,11 +40,12 @@ export async function PATCH (request: NextRequest) {
       }
     })
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password: _, ...userWithoutPassword } = updatedUser
 
     return NextResponse.json({ message: 'Perfil actualizado correctamente.', user: userWithoutPassword }, { status: 200 })
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error al actualizar el perfil:', error)
     return NextResponse.json({ error: 'Error al actualizar el perfil.' }, { status: 500 })
   }

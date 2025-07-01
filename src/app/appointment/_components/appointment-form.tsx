@@ -58,12 +58,12 @@ export default function AppointmentForm () {
 
   useEffect(() => {
     if (Array.isArray(userPets)) {
-      // @ts-ignore
-      form.setValue('petsCount', userPets.length as any)
+      // @ts-expect-error - Setting pets count from API response
+      form.setValue('petsCount', userPets.length)
     }
-  }, [userPets])
+  }, [userPets, form])
 
-  const onSubmit = async (values: any) => {
+  const onSubmit = async (values: Record<string, unknown>) => {
     if (stepper.isLast) {
       let imageUrl = ''
       if (values.petImage instanceof File) {

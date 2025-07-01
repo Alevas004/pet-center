@@ -19,12 +19,30 @@ const doctors = [
   { id: "dra. martínez", nombre: "Dra. Martínez", foto: "https://avatar.iran.liara.run/public/girl?username=martinez" },
 ]
 
+interface FormData {
+  petSelection?: string
+  selectedPetId?: string
+  petType?: string
+  petName?: string
+  petBreed?: string
+  petDescription?: string
+  petAge?: string
+  petWeight?: string
+  petImage?: File | string
+  serviceType?: string
+  visitReason?: string
+  visitDetails?: string
+  doctor?: string
+  appointmentDate?: string
+  appointmentTime?: string
+}
+
 export default function AppointmentSummary ({
   goToStep,
   user,
   pets
 }: AppointmentSummaryProps) {
-  const { watch } = useFormContext<any>()
+  const { watch } = useFormContext<FormData>()
   const formData = watch()
   const doctor = watch('doctor') || 'cualquier profesional'
 
