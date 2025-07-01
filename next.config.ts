@@ -5,10 +5,8 @@ const nextConfig: NextConfig = {
   images: {
     domains: ["res.cloudinary.com"], // Para Cloudinary
   },
-  // Experimental features para mejor performance
-  experimental: {
-    serverComponentsExternalPackages: ["@prisma/client", "bcryptjs"],
-  },
+  // External packages para mejor performance
+  serverExternalPackages: ["@prisma/client", "bcryptjs"],
 };
 
 export default nextConfig;
