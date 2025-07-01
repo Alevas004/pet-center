@@ -1,0 +1,120 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Gender {
+  MALE
+  FEMALE
+}
+
+model User {
+  id            String        @id @default(uuid())
+  name          String?
+  email         String        @unique
+  password      String
+  phone_number  String
+  address       String?
+  gender        Gender
+  image         String?
+  pets          Pet[]
+  appointments  Appointment[]
+  emailVerified DateTime?
+  sessions      Session[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Session {
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@id([identifier, token])
+}
+
+model PasswordResetToken {
+  id      String   @id @default(uuid())
+  email   String
+  token   String   @unique
+  expires DateTime
+
+  @@unique([email, token])
+}
+
+model Pet {
+  id           String        @id @default(uuid())
+  name         String
+  species      Species
+  breed        String?
+  gender       Gender
+  age          String?
+  weight       String?
+  description  String?
+  image        String?
+  userId       String
+  user         User          @relation(fields: [userId], references: [id])
+  appointments Appointment[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+}
+
+model Doctor {
+  id         String        @id @default(uuid())
+  name       String
+  speciality String
+  gender     Gender
+  image      String?
+  citas      Appointment[]
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+}
+
+model Appointment {
+  id      String   @id @default(uuid())
+  date    DateTime
+  time    String
+  service String
+  reason  String?
+  details String?
+  status  Status   @default(PENDING)
+
+  userId   String
+  petId    String
+  doctorId String?
+
+  user   User    @relation(fields: [userId], references: [id])
+  pet    Pet     @relation(fields: [petId], references: [id])
+  doctor Doctor? @relation(fields: [doctorId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Species {
+  DOG
+  CAT
+  OTHER
+}
+
+enum Status {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}

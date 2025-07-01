@@ -1,0 +1,735 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .select-card {
+    @apply relative cursor-pointer rounded-lg border-2 p-4 transition-all hover:border-sky-400 border-muted;
+  }
+
+  .select-card-circle {
+    @apply absolute top-2 right-2 h-4 w-4 rounded-full bg-sky-500;
+  }
+}
+
+.pattern {
+  background-position: 50% 50%;
+  background-repeat: repeat
+}
+
+.pattern-animate {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-repeat: repeat;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0
+}
+
+.pattern-animate::before {
+  content: "";
+  left: 0;
+  position: absolute;
+  top: 0
+}
+
+.pattern--acorns,
+.pattern-blade--acorns::before {
+  background-image: url('/new-horizons/assets/img/global/patterns/pattern-acorns.jpg');
+  background-size: 280px 280px
+}
+
+.pattern-animate--acorns::before {
+  animation: pattern_anim_acorns 80s linear 0s infinite forwards;
+  background-image: url('/new-horizons/assets/img/global/patterns/pattern-acorns.jpg');
+  background-size: 280px 280px;
+  height: calc(100% + 280px);
+  width: calc(100% + 280px)
+}
+
+@keyframes pattern_anim_acorns {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(-280px, -280px, 1px)
+  }
+}
+
+@keyframes pattern_anim_vertical-lines {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(0px, -280px, 1px)
+  }
+}
+
+.pattern--acorns-light,
+.pattern-blade--acorns-light::before {
+  background-image: url('/new-horizons/assets/img/global/patterns/pattern-acorns-light.jpg');
+  background-size: 419px 419px
+}
+
+.pattern-animate--acorns-light::before {
+  animation: pattern_anim_acorns-light 80s linear 0s infinite forwards;
+  background-image: url('/new-horizons/assets/img/global/patterns/pattern-acorns-light.jpg');
+  background-size: 419px 419px;
+  height: calc(100% + 419px);
+  width: calc(100% + 419px)
+}
+
+@keyframes pattern_anim_acorns-light {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(-419px, -419px, 1px)
+  }
+}
+
+@keyframes pattern_anim_vertical-lines {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(0px, -419px, 1px)
+  }
+}
+
+.pattern--characters,
+.pattern-blade--characters::before {
+  background-image: url('/new-horizons/assets/img/global/patterns/pattern-characters.jpg');
+  background-size: 500px 500px
+}
+
+.pattern-animate--characters::before {
+  animation: pattern_anim_characters 80s linear 0s infinite forwards;
+  background-image: url('/new-horizons/assets/img/global/patterns/pattern-characters.jpg');
+  background-size: 500px 500px;
+  height: calc(100% + 500px);
+  width: calc(100% + 500px)
+}
+
+@keyframes pattern_anim_characters {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(-500px, -500px, 1px)
+  }
+}
+
+@keyframes pattern_anim_vertical-lines {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(0px, -500px, 1px)
+  }
+}
+
+.pattern--confetti,
+.pattern-blade--confetti::before {
+  background-image: url('/new-horizons/assets/img/global/patterns/pattern-confetti.jpg');
+  background-size: 500px 500px
+}
+
+.pattern-animate--confetti::before {
+  animation: pattern_anim_confetti 80s linear 0s infinite forwards;
+  background-image: url('/new-horizons/assets/img/global/patterns/pattern-confetti.jpg');
+  background-size: 500px 500px;
+  height: calc(100% + 500px);
+  width: calc(100% + 500px)
+}
+
+@keyframes pattern_anim_confetti {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(-500px, -500px, 1px)
+  }
+}
+
+@keyframes pattern_anim_vertical-lines {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(0px, -500px, 1px)
+  }
+}
+
+.pattern--dots,
+.pattern-blade--dots::before {
+  background-image: url('/new-horizons/assets/img/global/patterns/pattern-dots.png');
+  background-size: 10px 10px
+}
+
+.pattern-animate--dots::before {
+  animation: pattern_anim_dots 80s linear 0s infinite forwards;
+  background-image: url('/new-horizons/assets/img/global/patterns/pattern-dots.png');
+  background-size: 10px 10px;
+  height: calc(100% + 10px);
+  width: calc(100% + 10px)
+}
+
+@keyframes pattern_anim_dots {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(-10px, -10px, 1px)
+  }
+}
+
+@keyframes pattern_anim_vertical-lines {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(0px, -10px, 1px)
+  }
+}
+
+.pattern--grid,
+.pattern-blade--grid::before {
+  background-image: url('/new-horizons/assets/img/global/patterns/pattern-grid.png');
+  background-size: 153px 153px
+}
+
+.pattern-animate--grid::before {
+  animation: pattern_anim_grid 80s linear 0s infinite forwards;
+  background-image: url('/new-horizons/assets/img/global/patterns/pattern-grid.png');
+  background-size: 153px 153px;
+  height: calc(100% + 153px);
+  width: calc(100% + 153px)
+}
+
+@keyframes pattern_anim_grid {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(-153px, -153px, 1px)
+  }
+}
+
+@keyframes pattern_anim_vertical-lines {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(0px, -153px, 1px)
+  }
+}
+
+.pattern--leaves-green,
+.pattern-blade--leaves-green::before {
+  background-image: url('/new-horizons/assets/img/global/patterns/pattern-leaves-green.jpg');
+  background-size: 420px 420px
+}
+
+.pattern-animate--leaves-green::before {
+  animation: pattern_anim_leaves-green 80s linear 0s infinite forwards;
+  background-image: url('/new-horizons/assets/img/global/patterns/pattern-leaves-green.jpg');
+  background-size: 420px 420px;
+  height: calc(100% + 420px);
+  width: calc(100% + 420px)
+}
+
+@keyframes pattern_anim_leaves-green {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(-420px, -420px, 1px)
+  }
+}
+
+@keyframes pattern_anim_vertical-lines {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(0px, -420px, 1px)
+  }
+}
+
+.pattern--leaves-turquoise,
+.pattern-blade--leaves-turquoise::before {
+  background-image: url('/new-horizons/assets/img/global/patterns/pattern-leaves-turquoise.jpg');
+  background-size: 300px 300px
+}
+
+.pattern-animate--leaves-turquoise::before {
+  animation: pattern_anim_leaves-turquoise 80s linear 0s infinite forwards;
+  background-image: url('/new-horizons/assets/img/global/patterns/pattern-leaves-turquoise.jpg');
+  background-size: 300px 300px;
+  height: calc(100% + 300px);
+  width: calc(100% + 300px)
+}
+
+@keyframes pattern_anim_leaves-turquoise {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(-300px, -300px, 1px)
+  }
+}
+
+@keyframes pattern_anim_vertical-lines {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(0px, -300px, 1px)
+  }
+}
+
+.pattern--leaves-white,
+.pattern-blade--leaves-white::before {
+  background-image: url('/new-horizons/assets/img/global/patterns/pattern-leaves-white.jpg');
+  background-size: 420px 420px
+}
+
+.pattern-animate--leaves-white::before {
+  animation: pattern_anim_leaves-white 80s linear 0s infinite forwards;
+  background-image: url('https://animalcrossing.nintendo.com/new-horizons/assets/img/global/patterns/pattern-leaves-white.jpg');
+  background-size: 420px 420px;
+  height: calc(100% + 420px);
+  width: calc(100% + 420px)
+}
+
+@keyframes pattern_anim_leaves-white {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(-420px, -420px, 1px)
+  }
+}
+
+@keyframes pattern_anim_vertical-lines {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(0px, -420px, 1px)
+  }
+}
+
+.pattern--stripes,
+.pattern-blade--stripes::before {
+  background-image: url('/new-horizons/assets/img/global/patterns/pattern-stripes.jpg');
+  background-size: 20px 20px
+}
+
+.pattern-animate--stripes::before {
+  animation: pattern_anim_stripes 80s linear 0s infinite forwards;
+  background-image: url('/new-horizons/assets/img/global/patterns/pattern-stripes.jpg');
+  background-size: 20px 20px;
+  height: calc(100% + 20px);
+  width: calc(100% + 20px)
+}
+
+@keyframes pattern_anim_stripes {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(-20px, -20px, 1px)
+  }
+}
+
+@keyframes pattern_anim_vertical-lines {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(0px, -20px, 1px)
+  }
+}
+
+.pattern--trees,
+.pattern-blade--trees::before {
+  background-image: url('/new-horizons/assets/img/global/patterns/pattern-trees.jpg');
+  background-size: 150px 100px
+}
+
+.pattern-animate--trees::before {
+  animation: pattern_anim_trees 80s linear 0s infinite forwards;
+  background-image: url('/new-horizons/assets/img/global/patterns/pattern-trees.jpg');
+  background-size: 150px 100px;
+  height: calc(100% + 100px);
+  width: calc(100% + 150px)
+}
+
+@keyframes pattern_anim_trees {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(-150px, -100px, 1px)
+  }
+}
+
+@keyframes pattern_anim_vertical-lines {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(0px, -100px, 1px)
+  }
+}
+
+.pattern--waves,
+.pattern-blade--waves::before {
+  background-image: url('/new-horizons/assets/img/global/patterns/pattern-waves.jpg');
+  background-size: 396px 50px
+}
+
+.pattern-animate--waves::before {
+  animation: pattern_anim_waves 80s linear 0s infinite forwards;
+  background-image: url('/new-horizons/assets/img/global/patterns/pattern-waves.jpg');
+  background-size: 396px 50px;
+  height: calc(100% + 50px);
+  width: calc(100% + 396px)
+}
+
+@keyframes pattern_anim_waves {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(-396px, -50px, 1px)
+  }
+}
+
+@keyframes pattern_anim_vertical-lines {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(0px, -50px, 1px)
+  }
+}
+
+.pattern--waves-small,
+.pattern-blade--waves-small::before {
+  background-image: url('/new-horizons/assets/img/global/patterns/pattern-waves-small.jpg');
+  background-size: 127px 170px
+}
+
+.pattern-animate--waves-small::before {
+  animation: pattern_anim_waves-small 80s linear 0s infinite forwards;
+  background-image: url('/new-horizons/assets/img/global/patterns/pattern-waves-small.jpg');
+  background-size: 127px 170px;
+  height: calc(100% + 170px);
+  width: calc(100% + 127px)
+}
+
+@keyframes pattern_anim_waves-small {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(-127px, -170px, 1px)
+  }
+}
+
+@keyframes pattern_anim_vertical-lines {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(0px, -170px, 1px)
+  }
+}
+
+.pattern--wood-grain,
+.pattern-blade--wood-grain::before {
+  background-image: url('/new-horizons/assets/img/global/patterns/pattern-wood-grain.jpg');
+  background-size: 1560px 878px
+}
+
+.pattern-animate--wood-grain::before {
+  animation: pattern_anim_wood-grain 80s linear 0s infinite forwards;
+  background-image: url('/new-horizons/assets/img/global/patterns/pattern-wood-grain.jpg');
+  background-size: 1560px 878px;
+  height: calc(100% + 878px);
+  width: calc(100% + 1560px)
+}
+
+@keyframes pattern_anim_wood-grain {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(-1560px, -878px, 1px)
+  }
+}
+
+@keyframes pattern_anim_vertical-lines {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(0px, -878px, 1px)
+  }
+}
+
+.pattern--vertical-lines,
+.pattern-blade--vertical-lines::before {
+  background-image: url('/new-horizons/assets/img/global/patterns/pattern-vertical-lines.jpg');
+  background-size: 350px 202px
+}
+
+.pattern-animate--vertical-lines::before {
+  animation: pattern_anim_vertical-lines 80s linear 0s infinite forwards;
+  background-image: url('/new-horizons/assets/img/global/patterns/pattern-vertical-lines.jpg');
+  background-size: 350px 202px;
+  height: calc(100% + 202px);
+  width: calc(100% + 350px)
+}
+
+@keyframes pattern_anim_vertical-lines {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(-350px, -202px, 1px)
+  }
+}
+
+@keyframes pattern_anim_vertical-lines {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(0px, -202px, 1px)
+  }
+}
+
+.pattern--vertical-lines-red,
+.pattern-blade--vertical-lines-red::before {
+  background-image: url('/new-horizons/assets/img/global/patterns/pattern-vertical-lines-red.jpg');
+  background-size: 350px 284px
+}
+
+.pattern-animate--vertical-lines-red::before {
+  animation: pattern_anim_vertical-lines-red 80s linear 0s infinite forwards;
+  background-image: url('/new-horizons/assets/img/global/patterns/pattern-vertical-lines-red.jpg');
+  background-size: 350px 284px;
+  height: calc(100% + 284px);
+  width: calc(100% + 350px)
+}
+
+@keyframes pattern_anim_vertical-lines-red {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(-350px, -284px, 1px)
+  }
+}
+
+@keyframes pattern_anim_vertical-lines {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(0px, -284px, 1px)
+  }
+}
+
+.pattern--vertical-lines-yellow,
+.pattern-blade--vertical-lines-yellow::before {
+  background-image: url('/new-horizons/assets/img/global/patterns/pattern-vertical-lines-yellow.jpg');
+  background-size: 259px 149px
+}
+
+.pattern-animate--vertical-lines-yellow::before {
+  animation: pattern_anim_vertical-lines-yellow 80s linear 0s infinite forwards;
+  background-image: url('/new-horizons/assets/img/global/patterns/pattern-vertical-lines-yellow.jpg');
+  background-size: 259px 149px;
+  height: calc(100% + 149px);
+  width: calc(100% + 259px)
+}
+
+@keyframes pattern_anim_vertical-lines-yellow {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(-259px, -149px, 1px)
+  }
+}
+
+@keyframes pattern_anim_vertical-lines {
+  0% {
+    transform: translate3d(0px, 0px, 1px)
+  }
+
+  100% {
+    transform: translate3d(0px, -149px, 1px)
+  }
+}

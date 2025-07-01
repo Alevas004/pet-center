@@ -1,0 +1,27 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# Redirect all requests to Next.js
+[[redirects]]
+  from = "/*"
+  to = "/404"
+  status = 404
+
+# Handle API routes
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api"
+  status = 200
+
+# Handle authentication
+[[redirects]]
+  from = "/auth/*"
+  to = "/.netlify/functions/auth"
+  status = 200

@@ -1,0 +1,11 @@
+1. npm install next-auth@beta
+2. npx auth secret
+3. config auth.js
+
+1. npm install @prisma/client @auth/prisma-adapter
+2. npm install prisma --save-dev
+3. npx prisma init
+4. Add schemas
+6. npx prisma generate
+5. npx prisma migrate dev
+6. Extend your Prisma Client instance
